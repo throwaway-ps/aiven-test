@@ -18,7 +18,7 @@ class TestConfig(unittest.TestCase):
         'KAFKA_BOOTSTRAP_SERVERS': 'bootstrap servers',
         'KAFKA_CERT_DIR': 'certificates be here'
     })
-    def test_asserts_when_not_configured(self):
+    def test_returns_what_is_in_env(self):
         self.assertEqual('a connection string', Config().db_config)
         self.assertEqual('bootstrap servers', Config().kafka_bootstrap_servers)
         self.assertEqual('certificates be here', Config().kafka_cert_dir)
