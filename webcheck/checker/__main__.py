@@ -1,5 +1,7 @@
 import logging
 import re
+
+from webcheck.checker.check_runner import CheckRunner
 from webcheck.util import Config
 from webcheck.checker import Checker
 from webcheck.util import KafkaConnector
@@ -28,9 +30,11 @@ def main():
         kafka_bootstrap_servers=conf.kafka_bootstrap_servers,
         kafka_cert_dir=conf.kafka_cert_dir,
     )
+    runner = CheckRunner()
     c = Checker(
         kafka_connector=kafka_connector,
         topic='checks-v1',
+        check_runner=runner,
         checks=checks
     )
     c.run()
